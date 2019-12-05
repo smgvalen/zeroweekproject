@@ -10,8 +10,7 @@ import javax.persistence.Transient;
 @Entity
 public class Civilization {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+ @Id
   private int id;
 
   private String name;

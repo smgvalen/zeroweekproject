@@ -36,16 +36,21 @@ public class CivilizationServiceImpl implements CivilizationService {
   }
 
   @Override
+  public Civilization findCivById(int id) {
+    return civilizationRepository.findById(id);
+  }
+
+  @Override
   public void saveCivilizations(CivilizatonApiResponse civilizatonApiResponse) {
     List<Result> civilizations = civilizatonApiResponse.getCivilizations();
     civilizations.forEach(result -> civilizationRepository.save(
         new Civilization(
             result.getId(),
-        result.getName(),
-        result.getArmy_type(),
-        result.getExpansion(),
-        result.getUnique_unit()
-    )));
+            result.getName(),
+            result.getArmy_type(),
+            result.getExpansion(),
+            result.getUnique_unit()
+        )));
   }
 
   @Override
@@ -64,7 +69,29 @@ public class CivilizationServiceImpl implements CivilizationService {
     });
   }
 
-  // miután mentettem adatbázisba a civilizációkat, írj egy kilistázást valamilyen szűrő alapján, amire tudsz tesztet írni
 
+  @Override
+  public List<Civilization> getConquerors() {
+    return civilizationRepository.listingFuckingConquerors();
+  }
 
+  @Override
+  public void saveCivById(int id) {
+    civilizationApi.getCivilizationById(id).enqueue(new Callback<Civilization>() {
+      @Override
+      public void onResponse(Call<Civilization> call,
+          Response<Civilization> response) {
+        civilizationRepository
+            .save(new Civilization(response.body().getId(), response.body().getName(),
+                response.body().getExpansion(), response.body().getArmy_type(),
+                response.body().getUnique_unit()));
+      }
+
+      @Override
+      public void onFailure(Call<Civilization> call, Throwable t) {
+
+      }
+    });
+    civilizationRepository.save(findCivById(id));
+  }
 }

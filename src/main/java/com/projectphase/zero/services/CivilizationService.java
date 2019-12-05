@@ -12,4 +12,10 @@ public interface CivilizationService {
    void getCivilizations();
 
    void saveCivilizations(CivilizatonApiResponse civilizatonApiResponse);
+
+   List<Civilization> getConquerors();
+
+   void saveCivById(int id);
+
+   Civilization findCivById(int id);
 }
