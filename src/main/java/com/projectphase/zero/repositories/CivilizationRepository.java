@@ -13,6 +13,6 @@ public interface CivilizationRepository extends CrudRepository<Civilization, Lon
     Civilization findById(int id);
 
     @Query(value = "select * from civilization where (army_type = 'The Conquerors')", nativeQuery = true)
-    List<Civilization> listingFuckingConquerors();
+    List<Civilization> findTheConquerors();
 
 }

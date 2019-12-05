@@ -72,26 +72,29 @@ public class CivilizationServiceImpl implements CivilizationService {
 
   @Override
   public List<Civilization> getConquerors() {
-    return civilizationRepository.listingFuckingConquerors();
+    return civilizationRepository.findTheConquerors();
   }
 
   @Override
   public void saveCivById(int id) {
+
     civilizationApi.getCivilizationById(id).enqueue(new Callback<Civilization>() {
       @Override
       public void onResponse(Call<Civilization> call,
           Response<Civilization> response) {
         civilizationRepository
-            .save(new Civilization(response.body().getId(), response.body().getName(),
-                response.body().getExpansion(), response.body().getArmy_type(),
+            .save(new Civilization(
+                response.body().getId(),
+                response.body().getName(),
+                response.body().getExpansion(),
+                response.body().getArmy_type(),
                 response.body().getUnique_unit()));
       }
 
       @Override
       public void onFailure(Call<Civilization> call, Throwable t) {
-
+        t.printStackTrace();
       }
     });
-    civilizationRepository.save(findCivById(id));
   }
 }
