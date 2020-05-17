@@ -16,6 +16,7 @@ public class Civilization {
   private String name;
   private String expansion;
   private String army_type;
+  @Transient
   private String[] unique_unit;
 //  private String[] unique_tech;
  // private String team_bonus;

@@ -1,3 +1,4 @@
+
 package com.projectphase.zero.controllers;
 
 import com.projectphase.zero.models.AuthenticationRequest;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HelloResource {
+public class MainController {
 
   @Autowired
   private AuthenticationManager authenticationManager;

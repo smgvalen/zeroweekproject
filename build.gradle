@@ -27,7 +27,6 @@ dependencies {
     implementation 'com.auth0:java-jwt:3.8.3'
     compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.2'
 
-
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     runtimeOnly 'mysql:mysql-connector-java'
 
@@ -38,6 +37,9 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    compile group: 'org.apache.derby', name: 'derby', version: '10.14.2.0'
+
+
 }
 
 test {
